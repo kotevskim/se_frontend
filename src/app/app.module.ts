@@ -4,13 +4,13 @@ import {FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
-import { FilterByLastNamePipe } from './pipes/filter-by-last-name.pipe';
+import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentDetailsComponent,
-    FilterByLastNamePipe
+    FilterByNamePipe
   ],
   imports: [
     BrowserModule,

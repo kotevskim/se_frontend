@@ -1,4 +1,4 @@
-import { FilterByLastNamePipe } from './filter-by-last-name.pipe';
+import { FilterByLastNamePipe } from './filter-by-name.pipe';
 
 describe('FilterByLastNamePipe', () => {
   it('create an instance', () => {

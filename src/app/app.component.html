@@ -8,7 +8,7 @@
 <input class="form-control" type="text" placeholder="Пребарај студент" [(ngModel)]="filterQuery">
 
 <ul id="list-students" class="list-group">
-  <li class="list-group-item" *ngFor="let student of (STUDENTS | filterByLastName:filterQuery)" (click)="onSelect(student)">
+  <li class="list-group-item" *ngFor="let student of (STUDENTS | filterByName:filterQuery)" (click)="onSelect(student)">
     {{student.fname}} {{student.lname}}
   </li>
 </ul>
