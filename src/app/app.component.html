@@ -5,8 +5,10 @@
   </h1>
 </div>
 
-<ul>
-  <li *ngFor="let student of STUDENTS" (click)="onSelect(student)">
+<input class="form-control" type="text" placeholder="Пребарај студент">
+
+<ul id="list-students" class="list-group">
+  <li class="list-group-item" *ngFor="let student of STUDENTS" (click)="onSelect(student)">
     {{student.fname}} {{student.lname}}
   </li>
 </ul>

@@ -1,0 +1,11 @@
+#list-students {
+  vertical-align: top;
+  display: inline-block;
+  width: 300px;
+  margin-right: 40px;
+}
+
+input {
+  width: 300px;
+  margin-bottom: 20px;
+}
