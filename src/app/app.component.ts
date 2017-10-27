@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StudentManagementService} from './student-management.service';
 import { Student } from './model/Student';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'Students';
   STUDENTS: Student[];
   currentStudent: Student;
+  filterQuery: string;
 
   constructor(private studentManagementService: StudentManagementService) {}
 
