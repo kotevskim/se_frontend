@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {studyPrograms, states} from '../model/constants';
 import {Address} from '../model/Address';
 import {Student} from '../model/Student';
-import {StudentManagementService} from "../student-management.service";
+import {StudentManagementService} from '../student-management.service';
 
 @Component({
   selector: 'app-student-edit-form',
@@ -24,12 +24,15 @@ export class StudentEditFormComponent implements OnChanges {
 
   createForm() {
     this.studentForm = this.fb.group({
-      firstName: ['', Validators.required],
+      firstName: [Validators.required, Validators.minLength(3)],
       lastName: ['', Validators.required],
       studyProgram: '',
       address: this.fb.group(new Address())
     });
   }
+
+  // These will be used for validation in the template
+  get firstName() { return this.studentForm.get('firstName'); }
 
   ngOnChanges(): void {
     this.studentForm.reset({
@@ -43,14 +46,13 @@ export class StudentEditFormComponent implements OnChanges {
   prepareSaveStudent(): Student {
     const formModel = this.studentForm.value;
 
-    const saveStudent: Student = new Student(
+    return new Student(
       formModel.firstName as string,
       formModel.lastName as string,
       this.student.index,
       formModel.studyProgram as string,
       new Address(formModel.address.street, formModel.address.city, formModel.address.state, formModel.address.zip)
     );
-    return saveStudent;
   }
 
   onSubmit() {
