@@ -1,11 +1,15 @@
-#list-students {
-  vertical-align: top;
-  display: inline-block;
+div#sidebar {
+  position: fixed;
+  height: 100%;
   width: 300px;
-  margin-right: 40px;
+
 }
 
 input {
   width: 300px;
   margin-bottom: 20px;
+}
+
+div#content {
+  margin-left: 330px;
 }

@@ -9,7 +9,7 @@ export class FilterByNamePipe implements PipeTransform {
   transform(students: Student[], filterQuery: string): Student[] {
     if (!filterQuery) return students;
     return students.filter(student => {
-      const fullName: string = (student.fname + ' ' + student.lname).toLowerCase();
+      const fullName: string = (student.firstName + ' ' + student.lastName).toLowerCase();
       return fullName.lastIndexOf(filterQuery.toLowerCase()) !== -1;
     });
   }

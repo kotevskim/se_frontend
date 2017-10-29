@@ -13,8 +13,7 @@ export class AppComponent implements OnInit {
 
   title = 'Students';
   STUDENTS: Student[];
-  currentStudent: Student;
-  filterQuery: string;
+  selectedStudent: Student;
 
   constructor(private studentManagementService: StudentManagementService) {}
 
@@ -23,6 +22,11 @@ export class AppComponent implements OnInit {
   }
 
   onSelect(student: Student) {
-    this.currentStudent = student;
+    this.selectedStudent = student;
+  }
+
+  updateList(student: Student) {
+    this.ngOnInit();
+    this.selectedStudent = student;
   }
 }

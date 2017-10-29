@@ -1,17 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
+<div id="sidebar">
+  <input #box class="form-control" type="text" placeholder="Пребарај студент" (keyup)="0"> <!--we must bind to the keyup event so angular updates the view-->
+
+  <ul id="list-students" class="list-group">
+    <li class="list-group-item" *ngFor="let student of (STUDENTS | filterByName:box.value)" (click)="onSelect(student)">
+      {{student.firstName}} {{student.lastName}}
+    </li>
+  </ul>
 </div>
 
-<input #box class="form-control" type="text" placeholder="Пребарај студент" (keyup)="0"> <!--we must bind to the keyup event so angular updates the view-->
-
-<ul id="list-students" class="list-group">
-  <li class="list-group-item" *ngFor="let student of (STUDENTS | filterByName:box.value)" (click)="onSelect(student)">
-    {{student.fname}} {{student.lname}}
-  </li>
-</ul>
-
-<app-student-details *ngIf="currentStudent" [student]="currentStudent"></app-student-details>
+<div id="content">
+  <app-student-details *ngIf="selectedStudent" [student]="selectedStudent"></app-student-details>
+  <!--<app-student-form *ngIf="selectedStudent" [model]="selectedStudent"></app-student-form>-->
+  <app-student-edit-form *ngIf="selectedStudent" [student]="selectedStudent" (onStudentEdit)="updateList($event);"></app-student-edit-form>
+</div>
 

@@ -1,13 +1,12 @@
-export class Student {
-  public fname;
-  public lname;
-  public index;
-  public nasoka;
+import {Address} from './Address';
 
-  constructor(fname: string, lname: string, index: number, nasoka: string) {
-    this.fname = fname;
-    this.lname = lname;
-    this.index = index;
-    this.nasoka = nasoka;
-  }
+export class Student {
+
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    public index: number,
+    public studyProgram: string,
+    public address: Address
+  ) {}
 }

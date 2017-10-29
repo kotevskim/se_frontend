@@ -1,0 +1,58 @@
+<form #heroForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="first-name">Име</label>
+    <input type="text" class="form-control" id="first-name"
+           required
+           [(ngModel)]="model.firstNname" name="firstName"
+           #firstName="ngModel">
+    <div [hidden]="firstName.valid || firstName.pristine"
+         class="alert alert-danger">
+      First name is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="last-name">Презиме</label>
+    <input type="text" class="form-control" id="last-name"
+           required
+           [(ngModel)]="model.lastName" name="lastName"
+           #lastName="ngModel">
+    <div [hidden]="lastName.valid || lastName.pristine"
+         class="alert alert-danger">
+      Last name is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="index">Индекс</label>
+    <input type="text" class="form-control" id="index"
+           required minlength="5" maxlength="6"
+           [(ngModel)]="model.index" name="index"
+           #index="ngModel">
+    <div *ngIf="index.invalid && (index.dirty || index.touched)"
+         class="alert alert-danger">
+
+      <div *ngIf="index.errors.required">
+        Index is required.
+      </div>
+      <div *ngIf="index.errors.minlength">
+        Index must be at least 5 characters long.
+      </div>
+      <div *ngIf="index.errors.forbiddenName">
+        Index cannot be 000000.
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="study-program">Hero Power</label>
+    <select class="form-control" id="study-program"
+            required
+            [(ngModel)]="model.studyProgram" name="studyProgram">
+      <option *ngFor="let program of studyPrograms" [value]="program">{{program}}</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Ok</button>
+</form>
