@@ -1,24 +1,23 @@
 import {
-  AfterContentInit, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit,
-  Output
+  Component, EventEmitter, Input, OnInit, Output
 } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {studyPrograms, states} from '../model/constants';
 import {Address} from '../model/Address';
 import {Student} from '../model/Student';
 import {StudentManagementService} from '../student-management.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-student-edit-form',
   templateUrl: './student-edit-form.component.html',
   styleUrls: ['./student-edit-form.component.css']
 })
-export class StudentEditFormComponent implements OnInit, DoCheck {
+export class StudentEditFormComponent implements OnInit {
 
-  @Input() student: Student;
-  @Output() onStudentEdit = new EventEmitter<Student>();
+  student: Student;
   studentForm: FormGroup;
+  // TODO implement separate service providers for stydi programs and states and inject them in the constructor
   studyPrograms = studyPrograms;
   states = states;
 
@@ -35,29 +34,27 @@ export class StudentEditFormComponent implements OnInit, DoCheck {
     })
       .subscribe(s => {
         this.student = s;
+        this.fillInForm();
       });
   }
 
   constructor(private fb: FormBuilder,
               private service: StudentManagementService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private  router: Router) {
     this.createForm();
   }
 
   createForm() {
     this.studentForm = this.fb.group({
-      firstName: [Validators.required, Validators.minLength(3)],
+      firstName: '', // Validators.required, Validators.minLength(3)],
       lastName: ['', Validators.required],
       studyProgram: '',
       address: this.fb.group(new Address())
     });
   }
 
-  ngDoCheck() {
-    // this.populateForm();
-  }
-
-  private populateForm() {
+  private fillInForm() {
     this.studentForm.setValue({
       firstName: this.student.firstName,
       lastName: this.student.lastName,
@@ -86,12 +83,10 @@ export class StudentEditFormComponent implements OnInit, DoCheck {
     this.student = this.prepareSaveStudent();
     this.service.edit(this.student.index, this.student)
       .then(studentFromServer => this.student = studentFromServer);
-
-
-    // this.onStudentEdit.emit(this.student);
+    this.router.navigateByUrl('/list');
   }
 
   revert() {
-    // this.ngOnChanges();
+    this.createForm();
   }
 }
