@@ -1,5 +1,5 @@
 import {
-  Component, EventEmitter, Input, OnInit, Output
+  Component, OnInit
 } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {studyPrograms, states} from '../model/constants';
@@ -17,7 +17,7 @@ export class StudentEditFormComponent implements OnInit {
 
   student: Student;
   studentForm: FormGroup;
-  // TODO implement separate service providers for stydi programs and states and inject them in the constructor
+  // TODO implement separate service providers for study programs and states and inject them in the constructor
   studyPrograms = studyPrograms;
   states = states;
 
@@ -41,14 +41,14 @@ export class StudentEditFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: StudentManagementService,
               private route: ActivatedRoute,
-              private  router: Router) {
+              private router: Router) {
     this.createForm();
   }
 
   createForm() {
     this.studentForm = this.fb.group({
-      firstName: '', // Validators.required, Validators.minLength(3)],
-      lastName: ['', Validators.required],
+      firstName: '',
+      lastName: '',
       studyProgram: '',
       address: this.fb.group(new Address())
     });
@@ -66,6 +66,10 @@ export class StudentEditFormComponent implements OnInit {
   // These will be used for validation in the template
   get firstName() {
     return this.studentForm.get('firstName');
+  }
+
+  get lastName() {
+    return this.studentForm.get('lastName');
   }
 
   prepareSaveStudent(): Student {

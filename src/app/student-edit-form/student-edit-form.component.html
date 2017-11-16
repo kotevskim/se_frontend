@@ -2,11 +2,11 @@
 
   <div class="form-group">
     <label class="center-block">Name:
-      <input class="form-control" formControlName="firstName" required>
+      <input class="form-control" formControlName="firstName" required minlength="3" maxlength="20">
     </label>
   </div>
 
-  <!--First name validation-->
+  <!--First name validation; firstName is from the get firstName method in the component-->
   <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
        class="alert alert-danger">
 
@@ -20,8 +20,20 @@
 
   <div class="form-group">
     <label class="center-block">Last Name:
-      <input class="form-control" formControlName="lastName" required>
+      <input class="form-control" formControlName="lastName" required minlength="3" maxlength="20">
     </label>
+  </div>
+
+  <!--Last name validation; lastName is from the get lastName method in the component-->
+  <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+       class="alert alert-danger">
+
+    <div *ngIf="lastName.errors.required">
+      Last Name is required.
+    </div>
+    <div *ngIf="lastName.errors.minlength">
+      Name must be at least 3 characters long.
+    </div>
   </div>
 
   <label class="center-block">Study Program:
