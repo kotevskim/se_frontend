@@ -1,3 +1,11 @@
-<h3>{{student.firstName}}  {{student.lastName}}</h3>
-<p>Индекс: {{student.index}}</p>
-<p>Насока: {{student.studyProgram}}</p>
+<div *ngIf="student">
+  <h3>{{student.firstName}}  {{student.lastName}}</h3>
+  <p>Индекс: {{student.index}}</p>
+  <p>Насока: {{student.studyProgram}}</p>
+
+  <button [routerLink]="['/list']">Back</button>
+  <button [routerLink]="['/edit', student.index]">Edit</button>
+</div>
+
+
+

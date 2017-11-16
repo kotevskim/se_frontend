@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {StudentManagementService} from './student-management.service';
-import { Student } from './model/Student';
-
+import {Student} from "./model/Student";
+import {Address} from "./model/Address";
 
 @Component({
   selector: 'app-root',
@@ -9,24 +9,7 @@ import { Student } from './model/Student';
   styleUrls: ['./app.component.css'],
   providers: [StudentManagementService]
 })
-export class AppComponent implements OnInit {
-
+export class AppComponent {
   title = 'Students';
-  STUDENTS: Student[];
-  selectedStudent: Student;
-
-  constructor(private studentManagementService: StudentManagementService) {}
-
-  ngOnInit(): void {
-    this.STUDENTS = this.studentManagementService.getStudents();
-  }
-
-  onSelect(student: Student) {
-    this.selectedStudent = student;
-  }
-
-  updateList(student: Student) {
-    this.ngOnInit();
-    this.selectedStudent = student;
-  }
+  st: Student=new Student('Ivan', 'Ivanovski', '11323', 'kni', new Address());
 }

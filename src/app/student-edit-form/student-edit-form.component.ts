@@ -1,16 +1,20 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {
+  AfterContentInit, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit,
+  Output
+} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {studyPrograms, states} from '../model/constants';
 import {Address} from '../model/Address';
 import {Student} from '../model/Student';
 import {StudentManagementService} from '../student-management.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-student-edit-form',
   templateUrl: './student-edit-form.component.html',
   styleUrls: ['./student-edit-form.component.css']
 })
-export class StudentEditFormComponent implements OnChanges {
+export class StudentEditFormComponent implements OnInit, DoCheck {
 
   @Input() student: Student;
   @Output() onStudentEdit = new EventEmitter<Student>();
@@ -18,7 +22,25 @@ export class StudentEditFormComponent implements OnChanges {
   studyPrograms = studyPrograms;
   states = states;
 
-  constructor(private fb: FormBuilder, private studentService: StudentManagementService) {
+  ngOnInit(): void {
+    this.route.paramMap.switchMap((params: ParamMap) => {
+      const index = params.get('index');
+      const studentPromise = this.service.findByIndex(index);
+      studentPromise.catch(
+        error => {
+          console.error(error.errorMessage);
+        }
+      );
+      return studentPromise;
+    })
+      .subscribe(s => {
+        this.student = s;
+      });
+  }
+
+  constructor(private fb: FormBuilder,
+              private service: StudentManagementService,
+              private route: ActivatedRoute) {
     this.createForm();
   }
 
@@ -31,11 +53,12 @@ export class StudentEditFormComponent implements OnChanges {
     });
   }
 
-  // These will be used for validation in the template
-  get firstName() { return this.studentForm.get('firstName'); }
+  ngDoCheck() {
+    // this.populateForm();
+  }
 
-  ngOnChanges(): void {
-    this.studentForm.reset({
+  private populateForm() {
+    this.studentForm.setValue({
       firstName: this.student.firstName,
       lastName: this.student.lastName,
       studyProgram: this.student.studyProgram,
@@ -43,9 +66,13 @@ export class StudentEditFormComponent implements OnChanges {
     });
   }
 
+  // These will be used for validation in the template
+  get firstName() {
+    return this.studentForm.get('firstName');
+  }
+
   prepareSaveStudent(): Student {
     const formModel = this.studentForm.value;
-
     return new Student(
       formModel.firstName as string,
       formModel.lastName as string,
@@ -57,10 +84,14 @@ export class StudentEditFormComponent implements OnChanges {
 
   onSubmit() {
     this.student = this.prepareSaveStudent();
-    this.studentService.updateStudent(this.student);
-    this.onStudentEdit.emit(this.student);
-    this.ngOnChanges();
+    this.service.edit(this.student.index, this.student)
+      .then(studentFromServer => this.student = studentFromServer);
+
+
+    // this.onStudentEdit.emit(this.student);
   }
 
-  revert() { this.ngOnChanges(); }
+  revert() {
+    // this.ngOnChanges();
+  }
 }

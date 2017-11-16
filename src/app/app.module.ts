@@ -7,6 +7,10 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
 import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { StudentEditFormComponent } from './student-edit-form/student-edit-form.component';
+import {StudentListComponent} from './student-list/student-list.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import { AppRoutingModule} from './app-routing/app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -14,9 +18,12 @@ import { StudentEditFormComponent } from './student-edit-form/student-edit-form.
     StudentDetailsComponent,
     FilterByNamePipe,
     StudentFormComponent,
-    StudentEditFormComponent
+    StudentEditFormComponent,
+    PageNotFoundComponent,
+    StudentListComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule
