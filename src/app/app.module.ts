@@ -10,6 +10,7 @@ import { StudentEditFormComponent } from './student-edit-form/student-edit-form.
 import {StudentListComponent} from './student-list/student-list.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { AppRoutingModule} from './app-routing/app-routing.module';
+import { StudentCreateFormComponent } from './student-create-form/student-create-form.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AppRoutingModule} from './app-routing/app-routing.module';
     StudentFormComponent,
     StudentEditFormComponent,
     PageNotFoundComponent,
-    StudentListComponent
+    StudentListComponent,
+    StudentCreateFormComponent
   ],
   imports: [
     AppRoutingModule,

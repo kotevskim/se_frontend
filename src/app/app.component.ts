@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {StudentManagementService} from './student-management.service';
-import {Student} from "./model/Student";
-import {Address} from "./model/Address";
+import {Student} from './model/Student';
+import {Address} from './model/Address';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +11,5 @@ import {Address} from "./model/Address";
 })
 export class AppComponent {
   title = 'Students';
-  st: Student=new Student('Ivan', 'Ivanovski', '11323', 'kni', new Address());
+  st: Student= new Student('Ivan', 'Ivanovski', '11323', 'kni', new Address());
 }

@@ -49,5 +49,16 @@ export class StudentManagementService {
     return Promise.resolve(updatedStudent);
   }
 
+  addStudent(newStudent: Student): boolean {
+    const studentsFromServer = [];
+    Object.assign(studentsFromServer, this.studentSource.getValue());
+    const result = studentsFromServer.find(s => s.index === newStudent.index);
+    if (!result) { // only if student does not exist
+      studentsFromServer.push(newStudent);
+      this.studentSource.next(studentsFromServer);
+      return true;
+    }
+    return false;
+  }
 
 }
