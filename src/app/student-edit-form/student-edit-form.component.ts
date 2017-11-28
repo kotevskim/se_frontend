@@ -36,6 +36,7 @@ export class StudentEditFormComponent implements OnInit {
         this.student = s;
         this.fillInForm();
       });
+
   }
 
   constructor(private fb: FormBuilder,
@@ -93,4 +94,6 @@ export class StudentEditFormComponent implements OnInit {
   revert() {
     this.createForm();
   }
+
+  //TODO sledi eventi za disable na save kompecto vo formata posto vaka ako pisam nesto i ako izbrisam vo imeto mi dava da socuvam bez ime
 }

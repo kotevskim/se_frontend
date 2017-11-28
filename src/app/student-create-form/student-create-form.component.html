@@ -1,5 +1,15 @@
 <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" novalidate>
 
+  <div *ngIf="canAdd==false" style="background-color: indianred; padding: 20px">
+    A Student with that index already exists!
+  </div>
+
+  <div class="form-group">
+    <label class="center-block">Index:
+      <input class="form-control" formControlName="index" required>
+    </label>
+  </div>
+
   <div class="form-group">
     <label class="center-block">Name:
       <input class="form-control" formControlName="firstName" required minlength="3" maxlength="20">
@@ -69,10 +79,10 @@
 
   <div style="margin-bottom: 1em">
     <button type="submit"
-            [disabled]="studentForm.pristine || (firstName.invalid || lastName.invalid)" class="btn btn-success">Save
+            [disabled]="studentForm.pristine" class="btn btn-success">Add
     </button> &nbsp;
     <button type="reset" (click)="revert()"
-            [disabled]="studentForm.pristine" class="btn btn-danger">Revert
+            class="btn btn-danger">Cancel
     </button>
   </div>
 
