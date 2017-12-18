@@ -1,10 +1,10 @@
 <div *ngIf="student">
   <h3>{{student.firstName}}  {{student.lastName}}</h3>
-  <p>Индекс: {{student.index}}</p>
-  <p>Насока: {{student.studyProgram}}</p>
+  <p>Индекс: {{student.id}}</p>
+  <p>Насока: {{student.studyProgram.name}}</p>
 
   <button [routerLink]="['/list']">Back</button>
-  <button [routerLink]="['/edit', student.index]">Edit</button>
+  <button [routerLink]="['/edit', student.id]">Edit</button>
 </div>
 
 

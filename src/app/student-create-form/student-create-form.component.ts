@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Student} from '../model/Student';
 import {Address} from '../model/Address';
 import {studyPrograms, states} from '../model/constants';
+import {StudyProgram} from '../model/StudyProgram';
 
 @Component({
   selector: 'app-student-create-form',
@@ -52,11 +53,11 @@ export class StudentCreateFormComponent implements OnInit {
   prepareSaveStudent(): Student {
     const formModel = this.studentForm.value;
     return new Student(
+      formModel.index as number,
       formModel.firstName as string,
       formModel.lastName as string,
-      formModel.index as string,
-      formModel.studyProgram as string,
-      new Address(formModel.address.street, formModel.address.city, formModel.address.state, formModel.address.zip)
+      new StudyProgram(1, 'KNI')
+      // formModel.studyProgram as string,
     );
   }
 

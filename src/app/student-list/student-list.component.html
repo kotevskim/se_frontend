@@ -3,7 +3,7 @@
 
 <ul id="list-students" class="list-group">
   <li class="list-group-item" *ngFor="let student of (students | filterByName:box.value)">
-    <a [routerLink]="['/details', student.index]">
+    <a [routerLink]="['/details', student.id]">
       {{student.firstName}} {{student.lastName}}
     </a>
   </li>

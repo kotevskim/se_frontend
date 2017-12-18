@@ -25,13 +25,7 @@ export class StudentDetailsComponent implements OnInit {
      this.route.paramMap
       .switchMap((params: ParamMap) => {
         const index = params.get('index');
-        const studentPromise = this.service.findByIndex(index);
-        studentPromise.catch(
-          error => {
-            console.error(error.errorMessage);
-          }
-        );
-        return studentPromise;
+        return this.service.findByIndex(+index);
       })
       .subscribe(student => {
         this.student = student;

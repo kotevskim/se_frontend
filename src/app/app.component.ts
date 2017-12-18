@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import {StudentManagementService} from './student-management.service';
-import {Student} from './model/Student';
-import {Address} from './model/Address';
+import {StudyProgramService} from './study-program.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [StudentManagementService]
+  providers: [StudentManagementService, StudyProgramService]
 })
 export class AppComponent {
   title = 'Students';
-  st: Student= new Student('Ivan', 'Ivanovski', '11323', 'kni', new Address());
 }

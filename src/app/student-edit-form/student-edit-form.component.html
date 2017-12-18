@@ -38,34 +38,9 @@
 
   <label class="center-block">Study Program:
     <select class="form-control" formControlName="studyProgram">
-      <option *ngFor="let program of studyPrograms" [value]="program">{{program}}</option>
+      <option *ngFor="let program of studyPrograms" [value]="program.name">{{program.name}}</option>
     </select>
   </label>
-
-  <div formGroupName="address" class="well well-lg">
-    <div class="form-group">
-      <label class="center-block">Street:
-        <input class="form-control" formControlName="street">
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="center-block">City:
-        <input class="form-control" formControlName="city">
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="center-block">State:
-        <select class="form-control" formControlName="state">
-          <option *ngFor="let state of states" [value]="state">{{state}}</option>
-        </select>
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="center-block">Zip Code:
-        <input class="form-control" formControlName="zip">
-      </label>
-    </div>
-  </div>
 
   <div style="margin-bottom: 1em">
     <button type="submit"

@@ -1,12 +1,11 @@
-import {Address} from './Address';
+import {StudyProgram} from './StudyProgram';
 
 export class Student {
 
   constructor(
+    public id: number,
     public firstName: string,
     public lastName: string,
-    public index: string,
-    public studyProgram: string,
-    public address: Address
+    public studyProgram: StudyProgram
   ) {}
 }
