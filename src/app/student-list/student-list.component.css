@@ -1,11 +1,14 @@
-ul {
-  width: 500px;
-  margin-bottom: 20px;
+ul li {
+  height: 50px;
 }
 
 input {
-  width: 300px;
   margin-bottom: 20px;
   margin-right: 40px;
   display: inline-block;
 }
+
+.div-buttons button {
+  margin-left: 3px;
+}
+

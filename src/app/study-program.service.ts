@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {StudyProgram} from './model/StudyProgram';
+import {Student} from "./model/Student";
 
 @Injectable()
 export class StudyProgramService {
@@ -13,6 +14,11 @@ export class StudyProgramService {
 
   getStudyPrograms(): Observable<StudyProgram[]> {
     return this.http.get<StudyProgram[]>(this.studyProgramsUrl);
+  }
+
+  findById(id: number): Observable<StudyProgram> {
+    const url = `${this.studyProgramsUrl}/${id}`;
+    return this.http.get<StudyProgram>(url);
   }
 
 }

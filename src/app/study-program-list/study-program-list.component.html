@@ -1,0 +1,20 @@
+<button routerLink="/study-programs/new" class="btn btn-primary btn-block"><span class="fa fa-plus"></span> New study program</button>
+
+<ul id="list-students" class="list-group">
+  <li style="font-size: 18px" class="list-group-item" *ngFor="let studyProgram of _studyPrograms">
+    <a [routerLink]="['/study-programs/details', studyProgram.id]">{{studyProgram.name}}</a>
+    <div class="div-buttons" style="float: right;">
+      <button
+        class="btn btn-sm btn-success"
+        [routerLink]="['/study-programs/edit', studyProgram.id]">
+        <span class="fa fa-pencil"></span>
+      </button>
+      <button
+        (click)="delete(studyProgram)"
+        class="btn btn-sm btn-danger">
+        <span class="fa fa-trash"></span>
+      </button>
+    </div>
+
+  </li>
+</ul>

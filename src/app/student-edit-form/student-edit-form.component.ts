@@ -7,6 +7,7 @@ import {StudentManagementService} from '../student-management.service';
 import {StudyProgramService} from '../study-program.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {StudyProgram} from '../model/StudyProgram';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-student-edit-form',
@@ -23,7 +24,8 @@ export class StudentEditFormComponent implements OnInit {
               private service: StudentManagementService,
               private route: ActivatedRoute,
               private studyProgramService: StudyProgramService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
   }
 
 
@@ -69,45 +71,27 @@ export class StudentEditFormComponent implements OnInit {
     return this.studentForm.get('lastName');
   }
 
-  // prepareSaveStudent(): Student {
-  // const formModel = this.studentForm.value;
-  // return new Student(
-  //   formModel.firstName as string,
-  //   formModel.lastName as string,
-  //   this.student.index,
-  //   formModel.studyProgram as string,
-  //   new Address(formModel.address.street, formModel.address.city, formModel.address.state, formModel.address.zip)
-  // );
-  // }
+  prepareSaveStudent() {
+    const formModel = this.studentForm.value;
+    this.student.firstName = formModel.firstName as string;
+    this.student.lastName = formModel.lastName as string;
+    this.student.studyProgram =
+      this.studyPrograms.find(p => p.name === formModel.studyProgram);
+  }
 
   onSubmit() {
-    const formModel = this.studentForm.value;
-
-    let studyProgram = null;
-    this.studyPrograms.forEach(p => {
-      if (p.name === formModel.studyProgram) {
-        studyProgram = p;
-      }
-    });
-
-    const s = new Student(
-      this.student.id,
-      formModel.firstName as string,
-      formModel.lastName as string,
-      studyProgram
-    );
-    console.log(JSON.stringify(s));
-    this.service.updateStudent(s.id, s)
+    this.prepareSaveStudent();
+    console.log(JSON.stringify(this.student));
+    this.service.updateStudent(this.student.id, this.student)
       .subscribe(() => { this.router.navigateByUrl('/list'); } );
-
-    // this.student = this.prepareSaveStudent();
-    // this.service.edit(this.student.id, this.student)
-    //   .then(studentFromServer => this.student = studentFromServer);
-    // this.router.navigateByUrl('/list');
   }
 
   revert() {
-    this.createForm();
+    this.studentForm.setValue({firstName: '', lastName: '', studyProgram: '', });
+  }
+
+  back() {
+    this.location.back();
   }
 
   // TODO sledi eventi za disable na save kompecto vo formata posto vaka ako pisam nesto i ako izbrisam vo imeto mi dava da socuvam bez ime

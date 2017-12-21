@@ -7,13 +7,17 @@ import {StudentEditFormComponent} from '../student-edit-form/student-edit-form.c
 import {StudentListComponent} from '../student-list/student-list.component';
 import {PageNotFoundComponent} from '../page-not-found/page-not-found.component';
 import {StudentCreateFormComponent} from '../student-create-form/student-create-form.component';
+import {StudyProgramListComponent} from "../study-program-list/study-program-list.component";
+import {StudyProgramDetailsComponent} from "../study-program-details/study-program-details.component";
 
 const appRoutes: Routes = [
-  { path: 'list', component: StudentListComponent },
+  { path: 'students/list', component: StudentListComponent },
   { path: 'edit/:index', component: StudentEditFormComponent },
   { path: 'new', component: StudentCreateFormComponent },
-  { path: 'details/:index',      component: StudentDetailsComponent },
-  { path: '',   redirectTo: '/list', pathMatch: 'full' },
+  { path: 'details/:index', component: StudentDetailsComponent },
+  { path: 'study-programs/list', component: StudyProgramListComponent },
+  { path: 'study-programs/details/:id', component: StudyProgramDetailsComponent },
+  { path: '',   redirectTo: 'students/list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

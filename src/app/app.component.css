@@ -13,3 +13,7 @@ input {
 div#content {
   margin-left: 330px;
 }
+
+router-outlet {
+  margin-top: 100px;
+}

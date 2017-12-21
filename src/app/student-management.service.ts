@@ -3,8 +3,6 @@ import {Student} from './model/Student';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {StudyProgram} from './model/StudyProgram';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
@@ -24,26 +22,30 @@ export class StudentManagementService {
     return this.http.get<Student>(url);
   }
 
+  findByStudyProgram(id: number): Observable<Student[]> {
+    const url = `${this.studentsUrl}/by-study-program/${id}`;
+    console.log(url);
+    return this.http.get<Student[]>(url);
+  }
+
   updateStudent(id: number, student: Student): Observable<any> {
     const url = `${this.studentsUrl}/${id}`;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    // const body = `firstName=${student.firstName}&lastName=${student.lastName}&studyProgramName=${student.studyProgram.name}`;
-    return this.http.patch(url, student, httpOptions);
+    return this.http.patch<Student>(url, student, httpOptions);
   }
 
-  addStudent(newStudent: Student): boolean {
-    // const studentsFromServer = [];
-    // Object.assign(studentsFromServer, this.studentSource.getValue());
-    // const result = studentsFromServer.find(s => s.id === newStudent.id);
-    // if (!result) { // only if student does not exist
-    //   studentsFromServer.push(newStudent);
-    //   this.studentSource.next(studentsFromServer);
-    //   return true;
-    // }
-    // return false;
-    return true;
+  addStudent(student: Student): Observable<Student> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post<Student>(this.studentsUrl, student, httpOptions);
   }
+
+  deleteStudent(id: number): Observable<any> {
+    const url = `${this.studentsUrl}/${id}`;
+    return this.http.delete<any>(url);
+}
 
 }

@@ -1,12 +1,12 @@
 <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" novalidate>
 
-  <div *ngIf="canAdd==false" style="background-color: indianred; padding: 20px">
-    A Student with that index already exists!
+  <div class="row">
+    <button class="btn btn-link" (click)="back()"><span class="fa fa-chevron-left"></span> Back</button>
   </div>
 
   <div class="form-group">
     <label class="center-block">Index:
-      <input class="form-control" formControlName="index" required>
+      <input class="form-control" formControlName="id" required>
     </label>
   </div>
 
@@ -48,41 +48,18 @@
 
   <label class="center-block">Study Program:
     <select class="form-control" formControlName="studyProgram">
-      <option *ngFor="let program of studyPrograms" [value]="program">{{program}}</option>
+      <option *ngFor="let program of studyPrograms" [value]="program.name">{{program.name}}</option>
     </select>
   </label>
 
-  <div formGroupName="address" class="well well-lg">
-    <div class="form-group">
-      <label class="center-block">Street:
-        <input class="form-control" formControlName="street">
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="center-block">City:
-        <input class="form-control" formControlName="city">
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="center-block">State:
-        <select class="form-control" formControlName="state">
-          <option *ngFor="let state of states" [value]="state">{{state}}</option>
-        </select>
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="center-block">Zip Code:
-        <input class="form-control" formControlName="zip">
-      </label>
-    </div>
-  </div>
+  <br/>
 
-  <div style="margin-bottom: 1em">
+  <div class="row">
     <button type="submit"
-            [disabled]="studentForm.pristine" class="btn btn-success">Add
-    </button> &nbsp;
-    <button type="reset" (click)="revert()"
-            class="btn btn-danger">Cancel
+            [disabled]="studentForm.pristine" class="col-md-6 btn btn-success">Add
+    </button>
+    <button type="reset" (click)="revertForm()"
+            class="col-md-6 btn btn-danger">Clean
     </button>
   </div>
 

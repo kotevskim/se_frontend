@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {StudentManagementService} from '../student-management.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Student} from '../model/Student';
-import {Address} from '../model/Address';
-import {studyPrograms, states} from '../model/constants';
+import {StudyProgramService} from '../study-program.service';
+import {Router} from '@angular/router';
 import {StudyProgram} from '../model/StudyProgram';
+import {Student} from '../model/Student';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-student-create-form',
@@ -15,29 +15,31 @@ import {StudyProgram} from '../model/StudyProgram';
 export class StudentCreateFormComponent implements OnInit {
 
   canAdd: boolean; // whether the student can be added
-  student: Student;
   studentForm: FormGroup;
-  // TODO implement separate service providers for study programs and states and inject them in the constructor
-  studyPrograms = studyPrograms;
-  states = states;
+  studyPrograms: StudyProgram[];
 
   ngOnInit(): void {
+    this.createForm();
+    this.studyProgramService.getStudyPrograms()
+      .subscribe(programs => {
+        this.studyPrograms = programs;
+      });
   }
 
   constructor(private fb: FormBuilder,
               private service: StudentManagementService,
-              private router: Router) {
-    this.createForm();
+              private studyProgramService: StudyProgramService,
+              private router: Router,
+              private location: Location) {
     this.canAdd = true;
   }
 
   createForm() {
     this.studentForm = this.fb.group({
-      index: '',
+      id: '',
       firstName: '',
       lastName: '',
       studyProgram: '',
-      address: this.fb.group(new Address())
     });
   }
 
@@ -52,27 +54,33 @@ export class StudentCreateFormComponent implements OnInit {
 
   prepareSaveStudent(): Student {
     const formModel = this.studentForm.value;
-    return new Student(
-      formModel.index as number,
-      formModel.firstName as string,
-      formModel.lastName as string,
-      new StudyProgram(1, 'KNI')
-      // formModel.studyProgram as string,
-    );
+    const id: number = formModel.id as number;
+    const firstName: string = formModel.firstName as string;
+    const lastName: string = formModel.lastName as string;
+    const studyProgram: StudyProgram =
+      this.studyPrograms.find(p => p.name === formModel.studyProgram);
+    return new Student(id, firstName, lastName, studyProgram);
   }
 
   onSubmit() {
-    this.student = this.prepareSaveStudent();
-    const added = this.service.addStudent(this.student);
-    if (added) {
-      this.router.navigateByUrl('/list');
-    } else {
-      this.canAdd = false;
-    }
+    const student: Student = this.prepareSaveStudent();
+    // console.log(JSON.stringify(s));
+    // we must subscribe because addStudent() sends post method which is idempotent
+    this.service.addStudent(student)
+      .subscribe(() => {
+        this.router.navigateByUrl('/students/list');
+      });
   }
 
-  revert() {
-    this.router.navigateByUrl('/list');
+  revertForm() {
+    this.studentForm.value.id = '';
+    this.studentForm.value.firstName = '';
+    this.studentForm.value.lastName = '';
+    this.studentForm.value.studyProgram = '';
+  }
+
+  back(): void {
+    this.location.back();
   }
 
 }

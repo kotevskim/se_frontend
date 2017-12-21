@@ -3,7 +3,7 @@ import {StudentManagementService} from '../student-management.service';
 import {Student} from '../model/Student';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import {Observable} from 'rxjs/Observable';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -18,7 +18,8 @@ export class StudentDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: StudentManagementService
+    private service: StudentManagementService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -30,6 +31,15 @@ export class StudentDetailsComponent implements OnInit {
       .subscribe(student => {
         this.student = student;
       });
+  }
+
+  delete(student: Student): void {
+    this.service.deleteStudent(student.id)
+      .subscribe(() => { this.router.navigateByUrl('/list'); } );
+  }
+
+  back(): void {
+    this.location.back();
   }
 
 }

@@ -1,17 +1,17 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
-
-
-
-  <!--<app-student-details *ngIf="selectedStudent" [student]="selectedStudent"></app-student-details>-->
-  <!--<app-student-form *ngIf="selectedStudent" [model]="selectedStudent"></app-student-form>-->
-  <!--<app-student-edit-form *ngIf="selectedStudent" [student]="selectedStudent" (onStudentEdit)="updateList($event);"></app-student-edit-form>-->
-<nav>
-  <a routerLink="/list" routerLinkActive="active">Students</a>
-  <!--<a routerLink="/heroes" routerLinkActive="active">Heroes</a>-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><span class="fa fa-graduation-cap"></span>IKnow</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/students/list" routerLinkActive="active">Students</a></li>
+      <li><a routerLink="/study-programs/list" routerLinkActive="active">Study programs</a></li>
+    </ul>
+  </div>
 </nav>
+
+<br>
 <router-outlet></router-outlet>
-<!--<app-student-edit-form [student]="st"></app-student-edit-form>-->
 
 
 

@@ -1,0 +1,31 @@
+<div *ngIf="studyProgram">
+
+  <div class="row">
+    <button class="btn btn-link" (click)="back()"><span class="fa fa-chevron-left"></span> Back</button>
+  </div>
+  <br>
+
+  <div class="row" style="font-size: 18px">
+    <code class="col-md-6">Name:</code>
+    <span class="col-md-6">{{studyProgram.name}}</span>
+  </div>
+
+  <ul class="list-group">
+    <li style="font-size: 18px" class="list-group-item" *ngFor="let student of students">
+      <a [routerLink]="['/details', student.id]">
+        {{student.firstName}} {{student.lastName}}
+      </a>
+    </li>
+  </ul>
+
+
+  <div class="row">
+    <button class="col-md-6 btn btn-primary" [routerLink]="['/study-programs/edit', studyProgram.id]"><span class="fa fa-pencil"></span> Edit</button>
+    <span class="col-md-2"></span>
+    <button class="col-md-6 btn btn-danger" (click)="delete(studyProgram)"><span class="fa fa-trash"></span> Delete</button>
+  </div>
+
+</div>
+
+
+

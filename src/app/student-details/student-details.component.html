@@ -1,10 +1,42 @@
 <div *ngIf="student">
-  <h3>{{student.firstName}}  {{student.lastName}}</h3>
-  <p>Индекс: {{student.id}}</p>
-  <p>Насока: {{student.studyProgram.name}}</p>
 
-  <button [routerLink]="['/list']">Back</button>
-  <button [routerLink]="['/edit', student.id]">Edit</button>
+  <div class="row">
+    <button class="btn btn-link" (click)="back()"><span class="fa fa-chevron-left"></span> Back</button>
+  </div>
+  <br>
+
+  <div class="row" style="font-size: 18px">
+    <code class="col-md-6">First name:</code>
+    <span class="col-md-6">{{student.firstName}}</span>
+  </div>
+  <br>
+  <div class="row" style="font-size: 18px">
+    <code class="col-md-6">Last name:</code>
+    <span class="col-md-6">{{student.lastName}}</span>
+  </div>
+  <br>
+  <div class="row" style="font-size: 18px">
+    <code class="col-md-6">Index:</code>
+    <span class="col-md-6">{{student.id}}</span>
+  </div>
+  <br>
+  <div class="row" style="font-size: 18px">
+    <code class="col-md-6">Study program:</code>
+    <span class="col-md-6">{{student.studyProgram.name}}</span>
+  </div>
+  <!--<h4><code class="col-md-4">Name:</code><span class="col-md-1"></span>{{student.firstName}}  {{student.lastName}}</h4>-->
+  <!--<h4><code class="col-md-4">Index:</code><span class="col-md-1"></span>{{student.id}}</h4>-->
+  <!--<h4><code class="col-md-4">Program:</code><span class="col-md-1"></span>{{student.studyProgram.name}}</h4>-->
+
+  <br>
+
+  <div class="row">
+    <!--<span class="col-md-1"></span>-->
+    <button class="col-md-6 btn btn-primary" [routerLink]="['/edit', student.id]"><span class="fa fa-pencil"></span> Edit</button>
+    <span class="col-md-2"></span>
+    <button class="col-md-6 btn btn-danger" (click)="delete(student)"><span class="fa fa-trash"></span> Delete</button>
+  </div>
+
 </div>
 
 

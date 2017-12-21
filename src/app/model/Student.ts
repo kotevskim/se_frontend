@@ -8,4 +8,5 @@ export class Student {
     public lastName: string,
     public studyProgram: StudyProgram
   ) {}
+
 }

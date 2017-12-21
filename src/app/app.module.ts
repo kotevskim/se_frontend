@@ -12,6 +12,8 @@ import {StudentListComponent} from './student-list/student-list.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { AppRoutingModule} from './app-routing/app-routing.module';
 import { StudentCreateFormComponent } from './student-create-form/student-create-form.component';
+import { StudyProgramListComponent } from './study-program-list/study-program-list.component';
+import { StudyProgramDetailsComponent } from './study-program-details/study-program-details.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { StudentCreateFormComponent } from './student-create-form/student-create
     StudentEditFormComponent,
     PageNotFoundComponent,
     StudentListComponent,
-    StudentCreateFormComponent
+    StudentCreateFormComponent,
+    StudyProgramListComponent,
+    StudyProgramDetailsComponent
   ],
   imports: [
     AppRoutingModule,
