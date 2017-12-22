@@ -21,4 +21,25 @@ export class StudyProgramService {
     return this.http.get<StudyProgram>(url);
   }
 
+  updateStudyProgram(id: number, studyProgram: StudyProgram): Observable<any> {
+    const url = `${this.studyProgramsUrl}/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.patch<StudyProgram>(url, studyProgram, httpOptions);
+  }
+
+  addStudyProgram(studyProgram: StudyProgram): Observable<StudyProgram> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.post<StudyProgram>(this.studyProgramsUrl, studyProgram, httpOptions);
+  }
+
+  deleteStudyProgram(id: number): Observable<any> {
+    const url = `${this.studyProgramsUrl}/${id}`;
+    console.log(url);
+    return this.http.delete<any>(url);
+  }
+
 }

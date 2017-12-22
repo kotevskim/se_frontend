@@ -18,4 +18,11 @@ export class StudyProgramListComponent implements OnInit {
       .subscribe(studyPrograms => this._studyPrograms = studyPrograms);
   }
 
+  delete(studyProgram: StudyProgram): void {
+    const index: number = this._studyPrograms.indexOf(studyProgram);
+    this._service.deleteStudyProgram(studyProgram.id)
+      .subscribe(() => { this._studyPrograms.splice(index, 1); },
+                 err => { alert(err.error); });
+  }
+
 }

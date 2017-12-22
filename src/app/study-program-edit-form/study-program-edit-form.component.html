@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+  <div class="row">
+    <button class="btn btn-link" (click)="back()"><span class="fa fa-chevron-left"></span> Back</button>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="form-group">
+      <label class="center-block">Name:
+        <input class="form-control" formControlName="name" required minlength="2" maxlength="50">
+      </label>
+    </div>
+  </div>
+
+  <!--name validation; name is from the get name method in the component-->
+  <div *ngIf="name.invalid && (name.dirty || name.touched)"
+       class="alert alert-danger">
+
+    <div *ngIf="name.errors.required">
+      Name is required.
+    </div>
+    <div *ngIf="name.errors.minlength">
+      Name must be at least 3 characters long.
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div class="row">
+    <button (click)="onSave()"
+            [disabled]="form.pristine || form.invalid" class="col-md-4 col-md-offset-1 btn btn-success">Save
+    </button>
+    <button type="reset" (click)="revert()"
+            [disabled]="form.pristine || form.invalid" class="col-md-4 col-md-offset-2 btn btn-danger">Clean
+    </button>
+  </div>
+
+</form>
+

@@ -1,5 +1,8 @@
-form {
-  width: 400px;
+:host {
+  vertical-align: top;
+  display: inline-block;
+  width: 700px;
   border: 1px solid lightgrey;
   padding: 30px;
+  /*margin-bottom: 30px;*/
 }

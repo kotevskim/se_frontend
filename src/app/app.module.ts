@@ -14,6 +14,8 @@ import { AppRoutingModule} from './app-routing/app-routing.module';
 import { StudentCreateFormComponent } from './student-create-form/student-create-form.component';
 import { StudyProgramListComponent } from './study-program-list/study-program-list.component';
 import { StudyProgramDetailsComponent } from './study-program-details/study-program-details.component';
+import { StudyProgramEditFormComponent } from './study-program-edit-form/study-program-edit-form.component';
+import { StudyProgramCreateFromComponent } from './study-program-create-from/study-program-create-from.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { StudyProgramDetailsComponent } from './study-program-details/study-prog
     StudentListComponent,
     StudentCreateFormComponent,
     StudyProgramListComponent,
-    StudyProgramDetailsComponent
+    StudyProgramDetailsComponent,
+    StudyProgramEditFormComponent,
+    StudyProgramCreateFromComponent
   ],
   imports: [
     AppRoutingModule,

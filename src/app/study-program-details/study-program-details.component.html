@@ -6,23 +6,30 @@
   <br>
 
   <div class="row" style="font-size: 18px">
-    <code class="col-md-6">Name:</code>
-    <span class="col-md-6">{{studyProgram.name}}</span>
+    <code class="col-md-4 col-md-offset-1">Name:</code>
+    <span class="col-md-5 col-md-offset-2">{{studyProgram.name}}</span>
   </div>
+  <br>
 
-  <ul class="list-group">
-    <li style="font-size: 18px" class="list-group-item" *ngFor="let student of students">
-      <a [routerLink]="['/details', student.id]">
-        {{student.firstName}} {{student.lastName}}
-      </a>
-    </li>
-  </ul>
+  <div class="row" style="font-size: 18px">
+    <code class="col-md-4 col-md-offset-1">Students:</code>
+  </div>
+  <br>
+  <div class="row">
+    <ul class="list-group">
+      <li style="font-size: 18px" class="col-md-9 col-md-offset-2 list-group-item" *ngFor="let student of students">
+        <a [routerLink]="['/details', student.id]">
+          {{student.firstName}} {{student.lastName}}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <br><br>
 
 
   <div class="row">
-    <button class="col-md-6 btn btn-primary" [routerLink]="['/study-programs/edit', studyProgram.id]"><span class="fa fa-pencil"></span> Edit</button>
-    <span class="col-md-2"></span>
-    <button class="col-md-6 btn btn-danger" (click)="delete(studyProgram)"><span class="fa fa-trash"></span> Delete</button>
+    <button class="col-md-4 col-md-offset-1 btn btn-primary" [routerLink]="['/study-programs/edit', studyProgram.id]"><span class="fa fa-pencil"></span> Edit</button>
+    <button class="col-md-4 col-md-offset-2 btn btn-danger" (click)="delete(studyProgram)"><span class="fa fa-trash"></span> Delete</button>
   </div>
 
 </div>

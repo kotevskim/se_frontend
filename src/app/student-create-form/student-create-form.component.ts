@@ -62,7 +62,7 @@ export class StudentCreateFormComponent implements OnInit {
     return new Student(id, firstName, lastName, studyProgram);
   }
 
-  onSubmit() {
+  onSave() {
     const student: Student = this.prepareSaveStudent();
     // console.log(JSON.stringify(s));
     // we must subscribe because addStudent() sends post method which is idempotent

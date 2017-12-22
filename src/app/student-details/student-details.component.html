@@ -6,35 +6,30 @@
   <br>
 
   <div class="row" style="font-size: 18px">
-    <code class="col-md-6">First name:</code>
-    <span class="col-md-6">{{student.firstName}}</span>
+    <code class="col-md-4 col-md-offset-1">First name:</code>
+    <span class="col-md-5 col-md-offset-2">{{student.firstName}}</span>
   </div>
   <br>
   <div class="row" style="font-size: 18px">
-    <code class="col-md-6">Last name:</code>
-    <span class="col-md-6">{{student.lastName}}</span>
+    <code class="col-md-4 col-md-offset-1">Last name:</code>
+    <span class="col-md-5 col-md-offset-2">{{student.lastName}}</span>
   </div>
   <br>
   <div class="row" style="font-size: 18px">
-    <code class="col-md-6">Index:</code>
-    <span class="col-md-6">{{student.id}}</span>
+    <code class="col-md-4 col-md-offset-1">Index:</code>
+    <span class="col-md-5 col-md-offset-2">{{student.id}}</span>
   </div>
   <br>
   <div class="row" style="font-size: 18px">
-    <code class="col-md-6">Study program:</code>
-    <span class="col-md-6">{{student.studyProgram.name}}</span>
+    <code class="col-md-4 col-md-offset-1">Study program:</code>
+    <span class="col-md-5 col-md-offset-2">{{student.studyProgram.name}}</span>
   </div>
-  <!--<h4><code class="col-md-4">Name:</code><span class="col-md-1"></span>{{student.firstName}}  {{student.lastName}}</h4>-->
-  <!--<h4><code class="col-md-4">Index:</code><span class="col-md-1"></span>{{student.id}}</h4>-->
-  <!--<h4><code class="col-md-4">Program:</code><span class="col-md-1"></span>{{student.studyProgram.name}}</h4>-->
 
-  <br>
+  <br><br>
 
   <div class="row">
-    <!--<span class="col-md-1"></span>-->
-    <button class="col-md-6 btn btn-primary" [routerLink]="['/edit', student.id]"><span class="fa fa-pencil"></span> Edit</button>
-    <span class="col-md-2"></span>
-    <button class="col-md-6 btn btn-danger" (click)="delete(student)"><span class="fa fa-trash"></span> Delete</button>
+    <button class="col-md-4 col-md-offset-1 btn btn-primary" [routerLink]="['/edit', student.id]"><span class="fa fa-pencil"></span> Edit</button>
+    <button class="col-md-4 col-md-offset-2 btn btn-danger" (click)="delete(student)"><span class="fa fa-trash"></span> Delete</button>
   </div>
 
 </div>

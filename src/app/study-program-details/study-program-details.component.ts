@@ -43,4 +43,9 @@ export class StudyProgramDetailsComponent implements OnInit {
     this._location.back();
   }
 
+  delete(studyProgram: StudyProgram): void {
+    this._studyProgramService.deleteStudyProgram(studyProgram.id)
+      .subscribe(() => { this._router.navigateByUrl('/study-programs/list'); } );
+  }
+
 }

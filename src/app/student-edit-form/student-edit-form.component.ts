@@ -17,7 +17,7 @@ import {Location} from '@angular/common';
 export class StudentEditFormComponent implements OnInit {
 
   student: Student;
-  studentForm: FormGroup;
+  form: FormGroup;
   studyPrograms: StudyProgram[];
 
   constructor(private fb: FormBuilder,
@@ -47,7 +47,7 @@ export class StudentEditFormComponent implements OnInit {
   }
 
   createForm() {
-    this.studentForm = this.fb.group({
+    this.form = this.fb.group({
       firstName: '',
       lastName: '',
       studyProgram: ''
@@ -55,7 +55,7 @@ export class StudentEditFormComponent implements OnInit {
   }
 
   private fillInForm() {
-    this.studentForm.setValue({
+    this.form.setValue({
       firstName: this.student.firstName,
       lastName: this.student.lastName,
       studyProgram: this.student.studyProgram.name,
@@ -64,34 +64,34 @@ export class StudentEditFormComponent implements OnInit {
 
   // These will be used for validation in the template
   get firstName() {
-    return this.studentForm.get('firstName');
+    return this.form.get('firstName');
   }
 
   get lastName() {
-    return this.studentForm.get('lastName');
+    return this.form.get('lastName');
   }
 
   prepareSaveStudent() {
-    const formModel = this.studentForm.value;
+    const formModel = this.form.value;
     this.student.firstName = formModel.firstName as string;
     this.student.lastName = formModel.lastName as string;
     this.student.studyProgram =
       this.studyPrograms.find(p => p.name === formModel.studyProgram);
   }
 
-  onSubmit() {
+  onSave() {
     this.prepareSaveStudent();
     console.log(JSON.stringify(this.student));
     this.service.updateStudent(this.student.id, this.student)
-      .subscribe(() => { this.router.navigateByUrl('/list'); } );
+      .subscribe(() => { this.router.navigateByUrl('/students/list'); } );
   }
 
   revert() {
-    this.studentForm.setValue({firstName: '', lastName: '', studyProgram: '', });
+    this.form.setValue({firstName: '', lastName: '', studyProgram: '', });
   }
 
   back() {
-    this.location.back();
+    window.history.back();
   }
 
   // TODO sledi eventi za disable na save kompecto vo formata posto vaka ako pisam nesto i ako izbrisam vo imeto mi dava da socuvam bez ime

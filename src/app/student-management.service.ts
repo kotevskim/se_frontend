@@ -31,14 +31,14 @@ export class StudentManagementService {
   updateStudent(id: number, student: Student): Observable<any> {
     const url = `${this.studentsUrl}/${id}`;
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     return this.http.patch<Student>(url, student, httpOptions);
   }
 
   addStudent(student: Student): Observable<Student> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     return this.http.post<Student>(this.studentsUrl, student, httpOptions);
   }
@@ -46,6 +46,6 @@ export class StudentManagementService {
   deleteStudent(id: number): Observable<any> {
     const url = `${this.studentsUrl}/${id}`;
     return this.http.delete<any>(url);
-}
+  }
 
 }
